@@ -15,7 +15,9 @@ app.use(bodyParser.json());
 
 const pg = require('pg')
 let pool = new pg.Pool({
-    database: 'project_manager'
+    database: 'project_manager',
+    username: 'kien',
+    password: 'test'
 })
 
 function run_sql(sql, cb){
