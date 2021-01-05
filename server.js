@@ -32,7 +32,7 @@ app.get('/', function(req,res){
 })
 
 app.post('/login', (request,response) => {
-    passport.authenticate('local', { successRedirect: '/',failureRedirect: '/login' });
+    // passport.authenticate('local', { successRedirect: '/',failureRedirect: '/login' });
     response.redirect('/mainpage')
 })
 
@@ -56,9 +56,12 @@ app.post('/logout', (request, response) => {
     response.redirect('/')
 })
 
+app.get('/lol', (request,response) => {
+    response.render('try')
+})
 
 app.get('/api/project_management', (request,response) => {
-    run_sql('SELECT * FROM ' , db_response => {
+    run_sql('SELECT * FROM tasks' , db_response => {
         response.json(db_response.rows)
     })
 })
