@@ -46,6 +46,9 @@
                 <h3> <%= filter_task[i].task_name %> </h3>
                     <a href= <%= "/details/"  + filter_task[i].id %> ><button>More details</button></a>
             <% } %>
+            <br>
+            <br>
+            <a href="/moretasks"><button>Add More Task</button></a>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
