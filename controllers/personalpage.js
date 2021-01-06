@@ -8,7 +8,7 @@ router.get('/personalpage', (request, response) => {
     var userName = request.session.userName
     // console.log(request.session)
 
-    run_sql('SELECT * FROM tasks WHERE id = $1', [userId], db_response => {
+    run_sql('SELECT * FROM tasks WHERE staff_id = $1', [userId], db_response => {
         var tasks = db_response.rows
         
         response.render('user', { userId: userId, userName: userName, tasks: tasks })

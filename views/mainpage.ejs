@@ -4,29 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="/css/mainpage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
     <title>Document</title>
-    <style>
-        header{
-            display: flex;
-            justify-content: space-evenly;
-        }
-        #members, #tasks{
-            text-align: center;
-        }
-        main{
-            display: flex;
-            justify-content: space-between;
-        }
-    </style>
+  
 </head>
 <body>
     <header>
-        <div id="welcome">
-            <h1>hi <%= userName %> </h1>
-        </div>
+
         <div id="profile">
             <a href="/personalpage"><button>Your Profile</button></a>
         </div>
+        <div id="welcome">
+            <h1>Hi <%= userName %> </h1>
+        </div>
+        
         <div id="logout">
             <form action="/logout?_method=DELETE" method="POST">
                 <button type="submit">Log Out</button>
@@ -37,13 +29,13 @@
 
     <main> 
         <div id="members"> 
-            <h2>List of Members</h2>
+            <h3>List of Members</h3>
           
         </div>
         <div id="tasks">
-            <h2> Here are the current list of task that is not assigned to anyone yet :</h2>
+            <h4> Here are the current list of task that is not assigned to anyone yet :</h4>
             <% for (let i = 0; i < filter_task.length; i++) { %>
-                <h3> <%= filter_task[i].task_name %> </h3>
+                <h5> <%= filter_task[i].task_name %> </h4>
                     <a href= <%= "/details/"  + filter_task[i].id %> ><button>More details</button></a>
             <% } %>
             <br>
