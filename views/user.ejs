@@ -1,25 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Project</title>
+    <title>Project Management</title>
 </head>
 <body>
-    <h1>Your current project</h1>
+    <div class="content-wrapper">
 
-    <h2></h2>
-    <h3></h3>
+        <h1>Hi <%= userName %>, your current project:</h1>
 
-    <button class="completed-btn">Completed</button>
-    
-    <div class="back-btn">
-        <a href="/">Back</a>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/js/client.js"></script>
+        <div class="project-name_and-details">
+            <h2>Task to do: </h2>
+            <% for (let i = 0; i < tasks.length; i++) { %> 
+                <p><%= tasks[i].task_name %></p>
+                <p><%= tasks[i].due_date %></p>
+                <p><%= tasks[i].details %></p>
+
+                <div class="myProgress">
+                    <div class="myBar">10%</div>
+                </div>
+                <br>
+                <button onclick="move()">Completed</button>
+
+            <% } %>
+        </div>
+
+        <div class="back-btn">
+            <a href="/mainpage">Back</a>
+        </div>
+        
+     </div>    
+        
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/js/progress-bar.js"></script>
 </body>
 </html>

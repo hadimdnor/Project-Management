@@ -1,19 +1,71 @@
+body {
+    margin: 0 auto;
+    background-color: lightblue; 
+}
 
-.button {
-    background: none;
+.content-wrapper {
+    margin-left: 3em;
+}
+
+h1 {
+    border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 5px;
+    
+}
+
+h2 {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.myProgress {
+    width: 100%;
+    background-color: #ddd;
 }
   
-.button:active{
-    background:olive;
+.myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #4CAF50;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
 }
 
-.button:focus{
-    background:olive;
+.back-btn a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    padding: 0.6em 1em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+
+.back-btn a:hover {
+    background-color: rgb(131, 131, 235);
 }
 
 .back-btn {
-    background-color: red;
+    text-align: right;
+    margin: 10em 5em 0 0;
+}
+
+.myProgress, .myBar {
+    border-radius: 5px;
+}
+
+.project-name_and-details {
+    margin: 3em 3em 3em 0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.project-name_and-details button {
+    border-radius: 5px;
+    border-style: none;
+    padding: 0.5em 1em;
+    background-color: rgb(129, 128, 128);
     color: white;
-    padding: 1em 1.5em;
-    text-decoration: none;
+    font-weight: bold;
 }

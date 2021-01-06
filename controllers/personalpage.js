@@ -3,8 +3,17 @@ const router = express.Router()
 const run_sql = require('../db')
 
 // User ejs file / route
-router.get('/personalpage', (request,response) => {
-    response.render('user')
+router.get('/personalpage', (request, response) => {
+    var userId = request.session.userId
+    var userName = request.session.userName
+    // console.log(request.session)
+
+    run_sql('SELECT * FROM tasks WHERE id = $1', [userId], db_response => {
+        var tasks = db_response.rows
+        
+        response.render('user', { userId: userId, userName: userName, tasks: tasks })
+    })
 })
+
 
 module.exports = router
