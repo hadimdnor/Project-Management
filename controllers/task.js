@@ -1,22 +1,8 @@
-const { response } = require('express')
+const { response, request } = require('express')
 const express = require('express')
 const router = express.Router()
 const run_sql = require('../db')
 
-
-// app.get('/lol', (request,response) => {
-//     run_sql('SELECT * FROM tasks', db_response => {
-//         response.json(db_response.rows)
-//         //response.render('task')
-//     })
-//     //response.render('task') //give back the HTML file
-// })
-
-//Get the json data, using run_sql function
-//Just create own API => just a route that talks to our db
-router.get('/tasks', (request,response) => {
-    response.render('task') //give back the HTML file => in ejs file
-})
 
 router.get('/details/:id', (request, response) => {
     var task_id = request.params.id
@@ -39,8 +25,21 @@ router.patch('/edit/:task_id', (request, response) => {
 
 
 router.get('/api/project_management', (request,response) => {
-    run_sql('SELECT * FROM tasks' , db_response => {
+    run_sql('SELECT * FROM tasks', [], db_response => {
         response.json(db_response.rows)
+    })
+})
+
+router.get('/moretasks', (request, response) => {
+    response.render('moretask')
+})
+
+router.post('/moretasks', (request, response) => {
+    const taskName = request.body.task_name
+    const dueDate = request.body.due_date
+    const content = request.body.content
+    run_sql('INSERT INTO tasks(task_name, due_date, details) VALUES($1, $2, $3)', [taskName, dueDate, content], db_response => {
+        response.redirect('/mainpage')
     })
 })
 
