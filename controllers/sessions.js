@@ -33,6 +33,7 @@ router.post('/login', (request, response) => {
             if (validPassword(password, user.password_digest)) {
                 // will get false because of bcrypt line
                 request.session.userId = user.id 
+                request.session.userName = user.username
                 response.redirect('/mainpage')
             } else {
                 response.redirect('/')

@@ -8,11 +8,31 @@
 <body>
 
     <div id="content">
-
+        <h3>HEHEHEE</h3>
+        <h2> <%= task_id %> </h2>
+        <h4> <%= task_details.task_name %></h4>
+        <h4> <%= task_details.due_date %></h4>
+        <h4> <%= task_details.details %></h4>
     </div>
+    <form action= <%= "/edit/" + task_id + "?_method=PATCH" %> method="POST">
+        <!-- "/details/"  + filter_task[i].id  -->
+        <button>Add to bucket</button>
+    </form>
     
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <a href="/mainpage"><button>Go back MainPage</button></a>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/js/details.js"></script>
+    <!-- <script src="/js/details.js"></script> -->
 </body>
 </html>

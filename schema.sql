@@ -11,3 +11,5 @@ INSERT INTO tasks (task_name, due_date, details) VALUES ('Task 2 - CRUD Apps', '
 
 SELECT * FROM users;
 SELECT * FROM tasks;
+
+INSERT INTO tasks (task_name, due_date, details) VALUES ('Task 3 - HUHUHU Apps', '2021 February 01', 'Make a web apps that requires you to use create, read, update and delete apps.');

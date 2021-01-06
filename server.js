@@ -12,7 +12,8 @@ const run_sql = require('./db')
 const mainPageRoutes = require('./controllers/mainpage')
 const userRoutes = require('./controllers/users')
 const sessionRoutes = require('./controllers/sessions')
-const personalPageRoutes = require('./controllers/personalpage')
+const personalPageRoutes = require('./controllers/personalpage');
+const taskPageRoutes = require('./controllers/task');
 
 
 let app = express()
@@ -42,9 +43,10 @@ app.use(session({
 
 app.use(methodOverride('_method')) //for log out
 
-// api 
-app.get('/api/project_management', (request,response) => {
-    run_sql('SELECT * FROM tasks' , db_response => {
+
+// API for users (untuk cukup syarat project)
+app.get('/api/project_management/users', (request, response) => {
+    run_sql('SELECT * FROM users', [], db_response => {
         response.json(db_response.rows)
     })
 })
@@ -54,6 +56,7 @@ app.use(mainPageRoutes)
 app.use(userRoutes)
 app.use(sessionRoutes)
 app.use(personalPageRoutes)
+app.use(taskPageRoutes)
 
 
 
