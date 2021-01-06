@@ -40,7 +40,7 @@ app.use(session({
 
 // allow Patch and Delete
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method')) //for log out
 
 // api 
 app.get('/api/project_management', (request,response) => {

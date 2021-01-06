@@ -20,7 +20,7 @@ router.get('/mainpage', (request,response) => {
         run_sql('SELECT * FROM tasks', [] ,db_response2 => {
             // db_response.rows[0]
             var tasks = db_response2.rows
-            console.log(tasks)
+            console.log(request)
             // Output of db_response.rows[n].task_name = iterate n to change task
             // {
             //     id: 2,
