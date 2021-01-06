@@ -10,7 +10,7 @@ router.get('/details/:id', (request, response) => {
     run_sql('SELECT * FROM tasks WHERE id = $1', [task_id], db_response =>{ 
         var task_details = db_response.rows[0]
 
-        response.render('details', { task_id: task_id , task_details: task_details })
+        response.render('details', { task_id: task_id, task_details: task_details })
     })
   
 })
@@ -18,7 +18,7 @@ router.get('/details/:id', (request, response) => {
 router.patch('/edit/:task_id', (request, response) => {
     var staff_id = request.session.userId
     var task_id = request.params.task_id
-    run_sql('UPDATE tasks SET staff_id = $1 WHERE id = $2', [staff_id , task_id], db_response => {
+    run_sql('UPDATE tasks SET staff_id = $1 WHERE id = $2', [staff_id, task_id], db_response => {
         response.redirect('/mainpage')
     })
 })
