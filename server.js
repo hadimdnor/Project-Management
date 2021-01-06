@@ -1,6 +1,20 @@
 const express = require('express')
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
+const session = require('express-session')
+const methodOverride = require('method-override')
+
+
+// Database
+const run_sql = require('./db')
+
+// controllers
+const mainPageRoutes = require('./controllers/mainpage')
+const userRoutes = require('./controllers/users')
+const sessionRoutes = require('./controllers/sessions')
+const personalPageRoutes = require('./controllers/personalpage')
+
+
 let app = express()
 const port = 3001
 
@@ -12,63 +26,34 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// enabling sessions
 
-const pg = require('pg')
-let pool = new pg.Pool({
-    database: 'project_manager',
-    username: 'kien',
-    password: 'test'
-})
+app.use(session({
+    key: 'user_sid',
+    secret: process.env['EXPRESS_SESSION_SECRET_KEY'], 
+    // express_session_secret_key can be anything jumble of letters and numbers (minimum length = +40 characters)
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 600000 }
 
-function run_sql(sql, cb){
-    pool.query(sql, (err, response) => {
-        cb(response)
-    })
-}
+}))
 
+// allow Patch and Delete
 
-app.get('/', function(req,res){
-    res.render('signin')
-})
+app.use(methodOverride('_method'))
 
-app.post('/login', (request,response) => {
-    // passport.authenticate('local', { successRedirect: '/',failureRedirect: '/login' });
-    response.redirect('/mainpage')
-})
-
-app.get('/register', function(req,res){
-    res.render('register')
-})
-
-app.post('/register', (request, response) => {
-
-    response.redirect('/')
-})
-
-app.get('/mainpage', (request,response) => {
-    var num1 = 5 
-    var num2 = 10
-    var sum = num1 + num2
-    response.render('mainpage', { sum: sum })
-})
-
-app.post('/logout', (request, response) => {
-    response.redirect('/')
-})
-
-app.get('/lol', (request,response) => {
-    response.render('try')
-})
-
+// api 
 app.get('/api/project_management', (request,response) => {
     run_sql('SELECT * FROM tasks' , db_response => {
         response.json(db_response.rows)
     })
 })
 
-app.get('/personalpage', (request,response) => {
-    response.render('user')
-})
+// ROUTES
+app.use(mainPageRoutes)
+app.use(userRoutes)
+app.use(sessionRoutes)
+app.use(personalPageRoutes)
 
 
 
